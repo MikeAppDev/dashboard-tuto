@@ -51,3 +51,6 @@ npm install react-icons@4.11.0
 for chart librairie : recharts.org
 
 npm install recharts@2.9.0
+
+MongoDB
+npm install mongoose
