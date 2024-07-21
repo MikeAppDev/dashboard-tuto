@@ -1,4 +1,12 @@
 .container {
-    position: sticky;
-    top: 40px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 5px 0px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.container:hover, .active {
+    background-color: #2E374a;
 }
