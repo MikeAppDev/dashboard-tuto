@@ -1,3 +1,4 @@
+import { fetchUsers } from "@/app/lib/data";
 import Search from "@/app/ui/dashboard/search/search";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import styles from "@/app/ui/dashboard/users/users.module.css";
@@ -5,7 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const UsersPage = () => {
+const UsersPage = async () => {
+    const users = await fetchUsers();
+    console.log(users);
+
     return (
         <div className={styles.container}>
             <div className={styles.top}>
@@ -26,7 +30,8 @@ const UsersPage = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {users.map((user) => (
+                    <tr key={user._id}>
                     <td>
                         <div className={styles.user}>
                             <Image 
@@ -35,7 +40,7 @@ const UsersPage = () => {
                                 alt="Avatar"
                                 width={40}
                                 height={40}
-                            />
+                                />
                             John Doe
                         </div>
                     </td>
@@ -50,6 +55,7 @@ const UsersPage = () => {
                         </Link>
                     </td>
                 </tr>
+            ))}
             </tbody>
             </table>
             <Pagination />
