@@ -47,3 +47,7 @@ npm run dev
 Création des composants pour faire le design et placement des éléments dans le projet.
 
 npm install react-icons@4.11.0
+
+for chart librairie : recharts.org
+
+npm install recharts@2.9.0

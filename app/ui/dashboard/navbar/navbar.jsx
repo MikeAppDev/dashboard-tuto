@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className={styles.menu}>
         <div className={styles.search}>
           <MdSearch />
-          <input type="text" placeholder='Search' className={styles.Input} />
+          <input type="text" placeholder='Search' className={styles.input} />
         </div>
         <div className={styles.icon}>
           <MdOutlineChat size={20} />
