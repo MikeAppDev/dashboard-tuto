@@ -9,6 +9,7 @@ import Link from "next/link";
 const UsersPage = async ({searchParams}) => {
 
     const q = searchParams?.q || "";
+    // const page = searchParams?.page || 1;
     const users = await fetchUsers(q);
 
     return (
