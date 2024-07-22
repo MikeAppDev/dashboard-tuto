@@ -13,7 +13,7 @@ const Pagination = ({ count }) => {
   const ITEM_PER_PAGE = 2;
 
   const hasPrev = ITEM_PER_PAGE * (parseInt(page) - 1) > 0;
-  const hasNext = ITEM_PER_PAGE * (parseInt(page) - 1) + ITEM_PER_PAGE < count;
+  const hasNext = ITEM_PER_PAGE * (parseInt(page) - 1) + ITEM_PER_PAGE < 10;
 
   const handleChangePage = (type) => {
     type === "prev"

@@ -11,8 +11,8 @@ import searchParams from "next/navigation";
 const ProductsPage = async ({ searchParams }) => {
 
     const q = searchParams?.q || "";
-    // const page = searchParams?.page || 1;
-    const produtcs = await fetchProducts(q);
+    const page = searchParams?.page || 1;
+    const produtcs = await fetchProducts(q, page);
 
     return (
         <div className={styles.container}>
