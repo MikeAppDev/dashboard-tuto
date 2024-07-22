@@ -48,9 +48,13 @@ Création des composants pour faire le design et placement des éléments dans l
 
 npm install react-icons@4.11.0
 
-for chart librairie : recharts.org
+for chart librairie : recharts.org : 
 
 npm install recharts@2.9.0
 
-MongoDB
+MongoDB : 
 npm install mongoose
+
+
+debounce : 
+npm i use-debounce@9.0.4

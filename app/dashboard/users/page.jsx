@@ -6,9 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const UsersPage = async () => {
-    const users = await fetchUsers();
-    console.log(users);
+const UsersPage = async ({searchParams}) => {
+
+    const q = searchParams?.q || "";
+    const users = await fetchUsers(q);
 
     return (
         <div className={styles.container}>
@@ -31,25 +32,25 @@ const UsersPage = async () => {
             </thead>
             <tbody>
                 {users.map((user) => (
-                    <tr key={user._id}>
+                    <tr key={user.id}>
                     <td>
                         <div className={styles.user}>
                             <Image 
                                 className={styles.userImage}
-                                src="/noavatar.png"
+                                src={user.img || "/noavatar.png"}
                                 alt="Avatar"
                                 width={40}
                                 height={40}
                                 />
-                            John Doe
+                            {user.username}
                         </div>
                     </td>
-                    <td>johndoe@gmail.com</td>
-                    <td>2023-01-01</td>
-                    <td>Admin</td>
-                    <td>Active</td>
+                    <td>{user.email}</td>
+                    <td>{user.createdAt?.toString().slice(4,16)}</td>
+                    <td>{user.isAdmin ? "Admin" : "Client"}</td>
+                    <td>{user.isActive ? "Active" : "Inactive"}</td>
                     <td>
-                        <Link href="/dashboard/users/test">
+                        <Link href={`/dashboard/users/${user.id}`}>
                             <button className={`${styles.button} ${styles.view}`}>View</button>
                             <button className={`${styles.button} ${styles.delete}`}>Delete</button>
                         </Link>
