@@ -62,3 +62,10 @@ npm i use-debounce@9.0.4
 
 cryp password : 
 npm i bcrypt@5.1.1
+
+Auth.js
+npm i next-auth@5.0.0-beta.3
+
+for generate code : openssl rand -base64 32
+
+await signIn("credentials", { username, password }); est une erreur de mot de passe / login incorrect 
