@@ -58,3 +58,7 @@ npm install mongoose
 
 debounce : 
 npm i use-debounce@9.0.4
+
+
+cryp password : 
+npm i bcrypt@5.1.1
