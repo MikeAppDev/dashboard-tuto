@@ -1,36 +1,40 @@
+import { updateProduct } from "@/app/lib/actions";
 import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
 import Image from "next/image";
+import { fetchProduct } from "@/app/lib/data";
 
-const SingleProductPage = async () => {
+const SingleProductPage = async ({ params }) => {
 
+  const { id } = params;
+  const product = await fetchProduct(id);
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src="/noavatar.png" alt="" fill />
+          <Image src={product.img || "/noavatar.png"} alt="" fill />
         </div>
-        Produit
+        {product.title}
       </div>
       <div className={styles.formContainer}>
-        <form action="" className={styles.form}>
-          <input type="hidden" name="id" value="id" />
+        <form action={updateProduct} className={styles.form}>
+          <input type="hidden" name="id" value={product.id} />
           <label>Title</label>
-          <input type="text" name="title" placeholder="Mac Book Pro" />
+          <input type="text" name="title" placeholder={product.title} />
           <label>Price</label>
-          <input type="number" name="price" placeholder="2999€" />
+          <input type="number" name="price" placeholder={product.price} />
           <label>Stock</label>
-          <input type="number" name="stock" placeholder="12" />
+          <input type="number" name="stock" placeholder={product.stock} />
           <label>Color</label>
           <input
             type="text"
             name="color"
-            placeholder="color"
+            placeholder={product.color}
           />
           <label>Size</label>
           <textarea
             type="text"
             name="size"
-            placeholder="size"
+            placeholder={product.size}
           />
           <label>Cat</label>
           <select name="cat" id="cat">
@@ -42,7 +46,7 @@ const SingleProductPage = async () => {
             name="desc"
             id="desc"
             rows="10"
-            placeholder="desc"
+            placeholder={product.desc}
           ></textarea>
           <button>Update</button>
         </form>

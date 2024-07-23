@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/ui/dashboard/products/products.module.css";
 import searchParams from "next/navigation";
+import { deleteProduct } from "@/app/lib/actions";
 
 
 
@@ -49,14 +50,18 @@ const ProductsPage = async ({ searchParams }) => {
                         </div>
                     </td>
                     <td>{product.desc}</td>
-                    <td>{product.price}</td>
+                    <td>{product.price} €</td>
                     <td>{product.createdAt?.toString().slice(4,16)}</td>
                     <td>{product.stock}</td>
                     <td>
                         <Link href={`/dashboard/products/${product.id}`}>
                             <button className={`${styles.button} ${styles.view}`}>View</button>
-                            <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                            {/* Delete Product */}
                         </Link>
+                            <form action={deleteProduct}>
+                                <input type="hidden" name="id" value={product.id} />
+                                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                            </form>
                     </td>
                 </tr>
                 ))}

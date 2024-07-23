@@ -1,31 +1,37 @@
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import Image from "next/image";
+import { fetchUser } from "@/app/lib/data";
+import { updateUser } from "@/app/lib/actions";
 
-const SingleUserPage = () => {
+const SingleUserPage = async ({ params }) => {
+
+    const { id } = params;
+    const user = await fetchUser(id);
     return (
         <div className={styles.container}>
             <div className={styles.infoContainer}>
                 <div className={styles.imgContainer}>
                     <Image 
                         className={styles.userImage}
-                        src="/noavatar.png"
+                        src={user.img || "/noavatar.png"}
                         fill
                     />
                 </div>
-                John Doe
+                {user.username}
             </div>
             <div className={styles.formContainer}>
-                <form className={styles.form} action="">
+                <form className={styles.form} action={updateUser}>
+                    <input type="text" name="id" value={user.id} hidden />
                     <label>Username</label>
-                    <input type="text" name="username" placeholder="Dean Winchester" />
+                    <input type="text" name="username" placeholder={user.username} />
                     <label>Email</label>
-                    <input type="email" name="email" placeholder="Dean.Winchester@deamon.com" />
+                    <input type="email" name="email" placeholder={user.email} />
                     <label>Password</label>
                     <input type="password" name="password" />
                     <label>Phone</label>
-                    <input type="text" name="phone" placeholder="+666 666 666 " />
+                    <input type="text" name="phone" placeholder={user.phone} />
                     <label>Address</label>
-                    <textarea type="text" name="address" placeholder="666 Main St, New York, NY 66 666" />
+                    <textarea type="text" name="address" placeholder={user.address} />
                     <label>isAdmin ?</label>
                     <select name="isAdmin" id="isAdmin">
                         <option value={true}>Yes</option>

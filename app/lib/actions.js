@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import bcrypt from 'bcrypt';
 
 
-//********** User **********//
+//********** Add User **********//
 export const addUser = async(formData) => {
     const {username, email, password, phone, address, isAdmin, isActive} = 
     Object.fromEntries(formData);
@@ -37,8 +37,58 @@ export const addUser = async(formData) => {
     redirect('/dashboard/users');
 }
 
+//********** Update User **********//
+export const updateUser = async(formData) => {
+    const {id, username, email, password, phone, address, isAdmin, isActive} = 
+    Object.fromEntries(formData);
+    
+    try {
+        connectToDB();
+    const updateFields = {
+        username, 
+        email, 
+        phone, 
+        address, 
+        isAdmin, 
+        isActive,
+    };
 
-//********** Product **********//
+    Object.keys(updateFields).forEach(
+        (key) =>
+          (updateFields[key] === "" || undefined) && delete updateFields[key]
+      );
+
+    await User.findByIdAndUpdate(id, updateFields);
+
+    } catch (err) {
+        console.log(err);
+        throw new Error('Fail to update user');
+    }
+
+    revalidatePath("/dashboard/users");
+    redirect('/dashboard/users');
+}
+
+//********** Delete User **********//
+export const deleteUser = async (formData) => {
+    const { id } =
+    Object.fromEntries(formData);
+
+    try {
+    connectToDB();
+    
+
+    await User.findByIdAndDelete(id);
+    } catch (err) {
+    console.log(err);
+    throw new Error("Failed to delete user!");
+    }
+
+    revalidatePath("/dashboard/users");
+};
+
+
+//********** Add Product **********//
 export const addProduct = async (formData) => {
     const { title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
@@ -63,4 +113,54 @@ export const addProduct = async (formData) => {
 
     revalidatePath("/dashboard/products");
     redirect("/dashboard/products");
+};
+
+//********** Update Product **********//
+export const updateProduct = async(formData) => {
+    const {id, title, desc, price, stock, color, size} = 
+    Object.fromEntries(formData);
+    
+    try {
+        connectToDB();
+    const updateFields = {
+        title,
+        desc,
+        price,
+        stock,
+        color,
+        size,
+    };
+
+    Object.keys(updateFields).forEach(
+        (key) =>
+          (updateFields[key] === "" || undefined) && delete updateFields[key]
+      );
+
+    await Product.findByIdAndUpdate(id, updateFields);
+
+    } catch (err) {
+        console.log(err);
+        throw new Error('Fail to update producr');
+    }
+
+    revalidatePath("/dashboard/products");
+    redirect('/dashboard/products');
+}
+
+//********** Delete Product **********//
+export const deleteProduct = async (formData) => {
+    const { id } =
+    Object.fromEntries(formData);
+
+    try {
+    connectToDB();
+    
+
+    await Product.findByIdAndDelete(id);
+    } catch (err) {
+    console.log(err);
+    throw new Error("Failed to delete product!");
+    }
+
+    revalidatePath("/dashboard/products");
 };
