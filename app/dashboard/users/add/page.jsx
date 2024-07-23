@@ -1,5 +1,4 @@
 import { addUser } from "@/app/lib/actions";
-import { User } from "@/app/lib/models";
 import styles from "@/app/ui/dashboard/users/addUser/addUser.module.css";
 
 const AddUserPage = () => {
@@ -11,12 +10,18 @@ const AddUserPage = () => {
         <input type="password" placeholder="password" name="password" required />
         <input type="phone" placeholder="phone" name="phone" required />
         <select name="isAdmin" id="isAdmin">
-          <option value={true} selected={user.isAdmin}>Yes</option>
-          <option value={false} selected={!user.isAdmin}>No</option>
+          <option value={false}>
+            Is Admin?
+          </option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
         </select>
         <select name="isActive" id="isActive">
-          <option value={true} selected={user.isActive}>Yes</option>
-          <option value={false} selected={!user.isActive}>No</option>
+          <option value={true}>
+            Is Active?
+          </option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
         </select>
        
         <textarea
