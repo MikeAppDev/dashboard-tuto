@@ -54,6 +54,7 @@ npm install recharts@2.9.0
 
 MongoDB : 
 npm install mongoose
+for the user model : usernae + email + password + phone must be different
 
 
 debounce : 
@@ -69,3 +70,12 @@ npm i next-auth@5.0.0-beta.3
 for generate code : openssl rand -base64 32
 
 await signIn("credentials", { username, password }); est une erreur de mot de passe / login incorrect 
+
+
+Deploy
+npm run build
+
+folder don't need
+.next
+.env
+node_modules

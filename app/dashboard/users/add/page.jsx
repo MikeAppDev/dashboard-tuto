@@ -5,10 +5,10 @@ const AddUserPage = () => {
   return (
     <div className={styles.container}>
       <form className={styles.form} action={addUser}>
-        <input type="text" placeholder="username" name="username" required />
+        <input type="text" placeholder="username" name="username" required/>
         <input type="email" placeholder="email" name="email" required />
         <input type="password" placeholder="password" name="password" required />
-        <input type="phone" placeholder="phone" name="phone" required />
+        <input type="phone" placeholder="phone" name="phone" />
         <select name="isAdmin" id="isAdmin">
           <option value={false}>
             Is Admin?
@@ -25,7 +25,7 @@ const AddUserPage = () => {
         </select>
        
         <textarea
-          required
+          
           name="address"
           id="address"
           rows="16"
