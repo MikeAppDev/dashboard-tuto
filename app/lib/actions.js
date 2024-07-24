@@ -169,13 +169,13 @@ export const deleteProduct = async (formData) => {
 
 
 //********** Auth **********//
-export const authenticate = async (formData) => {
+// prevState vient de const login form
+export const authenticate = async ( prevState, formData) => {
     const { username, password } = Object.fromEntries(formData);
   
     try {
       await signIn("credentials", { username, password });
     } catch (err) {
-        console.log(err);
-      throw err;
+      return "Wrong credentials"
     }
   };
